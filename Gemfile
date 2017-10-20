@@ -14,7 +14,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-gem 'annotate', require: false
+gem 'annotate'
 gem 'gravatar-ultimate'
 
 group :development, :test do
@@ -27,6 +27,7 @@ group :development, :test do
   gem "binding_of_caller"
   gem 'rspec-rails', '~> 3.6'
   gem 'rb-readline'
+  gem 'railroady'
 end
 
 group :development do
