@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
+  
   def new
     @user = User.new
   end
@@ -8,7 +10,7 @@ class UsersController < ApplicationController
     if @user.save
       login(params[:user][:email], params[:user][:password]) # Execute the Login
       flash[:success] = 'Bienvenido!'
-      redirect_to root_path
+      redirect_back_or_to root_path
     else
       render 'new'
     end
