@@ -22,4 +22,11 @@
       </div>
     </div>
   </div>
-  <%= javascript_include_tag params[:controller] %>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      })
+    })//document ends
+  </script>
