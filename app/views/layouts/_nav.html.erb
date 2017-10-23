@@ -10,14 +10,13 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Buscar Pregunta..." aria-label="Search for...">
           <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button">Buscar</button>
+            <button class="btn btn-primary" type="button">Buscar</button>
           </span>
         </div>
         </form>
       <ul class="navbar-nav">
         <% if current_user %>
-          <li class="nav-item"><%= link_to 'Preguntar', secret_path , class:'nav-link' %></li>
-          <li class="nav-item"><span><%= current_user.email %></span></li>
+          <li class="nav-item"><%= link_to 'Preguntar', new_question_path , class:'nav-link' %></li>
           <li class="nav-item"><%= link_to 'Salir', log_out_path, method: :delete, class: 'nav-link' %></li>
         <% else %>
           <li class="nav-item" ><%= link_to 'Registrarse', sign_up_path, class:'nav-link' %></li>
