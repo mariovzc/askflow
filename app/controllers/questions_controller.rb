@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def index
     @questions = Question.all
