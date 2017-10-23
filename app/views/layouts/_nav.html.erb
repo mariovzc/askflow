@@ -16,12 +16,12 @@
         </form>
       <ul class="navbar-nav">
         <% if current_user %>
-          <li class="nav-item"><%= link_to 'New Question', secret_path , class:'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Preguntar', secret_path , class:'nav-link' %></li>
           <li class="nav-item"><span><%= current_user.email %></span></li>
-          <li class="nav-item"><%= link_to 'Log Out', log_out_path, method: :delete, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Salir', log_out_path, method: :delete, class: 'nav-link' %></li>
         <% else %>
-          <li class="nav-item" ><%= link_to 'Sign Up', sign_up_path, class:'nav-link' %></li>
-          <li class ="nav-item"><%= link_to 'Log In', log_in_path, class:'nav-link' %></li>
+          <li class="nav-item" ><%= link_to 'Registrarse', sign_up_path, class:'nav-link' %></li>
+          <li class ="nav-item"><%= link_to 'Iniciar sesión', log_in_path, class:'nav-link' %></li>
         <% end %>
       </ul>
     </div>
