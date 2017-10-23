@@ -4,16 +4,15 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Buscar Pregunta..." aria-label="Search for...">
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="button">Buscar</button>
-          </span>
-        </div>
-        </form>
+        <%= form_tag questions_path, class: "form-inline my-2 my-lg-0", method: :get do %>
+          <div class="input-group">
+            <%= text_field_tag :question, params[:question], class: "form-control", placeholder: "Buscar pregunta..." %>
+            <span class="input-group-btn">
+              <%= submit_tag "Buscar", name: nil, class: "btn btn-primary" %>
+            </span>
+          </div>
+        <% end %>
       <ul class="navbar-nav">
         <% if current_user %>
           <li class="nav-item"><%= link_to 'Preguntar', new_question_path , class:'nav-link' %></li>
