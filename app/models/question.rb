@@ -15,6 +15,18 @@ class Question < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
-  validates :user, presence: true  
+  validates :user, presence: true
+
+
+  def self.search(word: nil)
+    with_word(word)
+    .with_order
+  end
+  scope :with_word, proc { |word|
+    if word.present?
+      where("title like ?  OR description LIKE ? ", "%#{word}%", "%#{word}%")
+    end
+  }
+  scope :with_order, -> { order('created_at DESC') }
   
 end
