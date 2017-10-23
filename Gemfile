@@ -19,6 +19,7 @@ gem 'gravatar-ultimate'
 gem 'sorcery'
 gem 'bootstrap', '~> 4.0.0.beta2'
 gem 'jquery-rails'
+gem 'redcarpet'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
