@@ -1,0 +1,9 @@
+es-CO:
+    activerecord:
+      attributes:
+        user:
+          email: "Email"
+          password: "Contraseña"
+        question:
+          title: "Titulo"
+          description: "Descripcion"

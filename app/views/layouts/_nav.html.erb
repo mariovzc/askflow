@@ -5,13 +5,15 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <%= form_tag questions_path, class: "form-inline my-2 my-lg-0", method: :get do %>
-          <div class="input-group">
-            <%= text_field_tag :question, params[:question], class: "form-control", placeholder: "Buscar pregunta..." %>
-            <span class="input-group-btn">
-              <%= submit_tag "Buscar", name: nil, class: "btn btn-primary" %>
-            </span>
-          </div>
+        <% if show_search_question%>
+          <%= form_tag questions_path, class: "form-inline my-2 my-lg-0", method: :get do %>
+            <div class="input-group">
+              <%= text_field_tag :question, params[:question], class: "form-control", placeholder: "Buscar pregunta..." %>
+              <span class="input-group-btn">
+                <%= submit_tag "Buscar", name: nil, class: "btn btn-primary" %>
+              </span>
+            </div>
+          <% end %>
         <% end %>
       <ul class="navbar-nav">
         <% if current_user %>
