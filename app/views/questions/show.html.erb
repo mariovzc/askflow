@@ -1,27 +1,52 @@
 <div class="question form-container">
     <div class="row">
       <div class="col-sm-8 offset-sm-2">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="title text-center"><%= @question.title %></h2>
-              <%=markdown(@question.description)%>
-              <hr>
-              <%if question_owner%>
-                <div class="actions text-center">
-                  <%= link_to  "Editar", edit_question_path(@question), class: 'btn btn-outline-primary btn-sm' %>
-                  <%= link_to  "Borrar", question_path(@question), method: :delete, data: { confirm: 'Estas seguro?' }, class: 'btn btn-outline-primary btn-sm' %>
-                </div>
-              <% end %>
-              <div class="data">
-                <span class="user">Preguntó: <strong><%= @question.user.email %></strong></span>
-                |
-                <span class="date">preguntado hace: <%= time_ago_in_words(@question.created_at) %></span>    
+        <div class="card">
+          <div class="card-body">
+            <h2 class="title text-center"><%= @question.title %></h2>
+            <%=markdown(@question.description)%>
+            <hr>
+            <%if question_owner%>
+              <div class="actions text-center">
+                <%= link_to  "Editar", edit_question_path(@question), class: 'btn btn-outline-primary btn-sm' %>
+                <%= link_to  "Borrar", question_path(@question), method: :delete, data: { confirm: 'Estas seguro?' }, class: 'btn btn-outline-primary btn-sm' %>
               </div>
+            <% end %>
+            <div class="data">
+              <span class="user">Preguntó: <strong><%= @question.user.email %></strong></span>
+              |
+              <span class="date">preguntado: <%= time_ago_in_words(@question.created_at) %></span>              
             </div>
-          </div> 
+          </div>
+        </div>
+        <hr>
+        <div class="comments">
+          <% if current_user %>
+            <div class="text-right">
+             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createCommentModal">Comentar</button>
+            </div>
+          <% end %>
+
+          <h3 class="text-center">Respuestas</h3> 
+          <%= render partial: 'comments/comments', locals: {commentable: @question} %>
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="createCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center">Nuevo Comentario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <%= render partial: "comments/form", locals: {commentable: @question} %>              
+        </div>
+      </div>
+    </div>
 
   <script type="text/javascript">
     $(document).ready(function(){

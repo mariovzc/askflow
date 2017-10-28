@@ -14,6 +14,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :questions
+  has_many :comments
 
   validates :email, uniqueness: true, format: /@/
   validates :password, presence: true, on: :create
