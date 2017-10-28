@@ -64,5 +64,17 @@
     .data{
       text-align: center;
     }
+    .replies{
+      background-color: #cfd8dc;
+      padding: 10px;
+      div{
+        span{
+          font-size: 13px;
+          strong{
+            color: #0069D9;
+          }          
+        }
+      }
+    }
   }
 }

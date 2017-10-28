@@ -12,4 +12,9 @@
 class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
   belongs_to :user
+  belongs_to :commentable,  class_name: "Comment" #-> requires "parent_id" column
+  has_many   :replies, class_name: "Comment", foreign_key: :commentable_id, dependent: :destroy
+
+  validates :body, presence: true  
+
 end

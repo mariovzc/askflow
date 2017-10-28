@@ -12,7 +12,20 @@
   <div class="data">
     <span class="user">Preguntó: <strong><%= comment.user.email %></strong></span>
     |
-    <span class="date">preguntado: <%= time_ago_in_words(comment.created_at) %></span>        
+    <span class="date">preguntado hace: <%= time_ago_in_words(comment.created_at) %></span>        
   </div>
+  <% if !comment.replies.blank? && type_comment(comment.replies.first.commentable_type) %>
+    <div class="replies">
+      <h6 class="text-center"> Respuestas</h6>
+      <%comment.replies.each do |reply|%>
+        <% if type_comment reply.commentable_type %>
+          <div>
+            <span><%=reply.body%> - <strong><%=reply.user.email%></strong> <span>hace <%= time_ago_in_words(reply.created_at) %></span> </span>  
+          </div>
+          <hr>  
+        <% end %>
+      <%end%>
+    </div>
+  <% end %>
 </div>
 <% end %>
