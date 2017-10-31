@@ -12,7 +12,7 @@
 
 class Question < ApplicationRecord
   extend FriendlyId
-  friendly_id :title
+  friendly_id :title, use: :slugged
 
   acts_as_votable
   is_impressionable
