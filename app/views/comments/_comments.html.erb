@@ -8,8 +8,10 @@
       <div class="lead"><%=markdown(comment.body)%></div>                    
     </div>
     <div class="col-sm-2 text-center">
-      <button id="reply-<%=comment.id%>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#createReply" data-whatever="<%=comment.id%>">Reply</button>        
-    </div> 
+      <% if current_user %>
+        <button id="reply-<%=comment.id%>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#createReply" data-whatever="<%=comment.id%>">Reply</button>
+      <% end %>
+    </div>
   </div>
   <hr class="my-4">
   <div class="data">
@@ -18,13 +20,13 @@
     <span class="date">preguntado hace: <%= time_ago_in_words(comment.created_at) %></span>
   </div>
   <% if !comment.replies.blank? %>
-    <div class="replies">
+    <div class="replies align-right">
       <%comment.replies.each do |reply|%>
         <% if type_comment reply.commentable_type %>
           <div>
             <span><%=reply.body%> - <strong><%=reply.user.email%></strong> <span>hace <%= time_ago_in_words(reply.created_at) %></span> </span>  
           </div>
-          <hr>
+          <%= last_reply(reply, comment.replies) %>
         <% end %>
       <%end%>        
     </div>
