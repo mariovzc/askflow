@@ -12,7 +12,8 @@
 
 class User < ApplicationRecord
   authenticates_with_sorcery!
-
+  acts_as_voter
+  
   has_many :questions
   has_many :comments
 

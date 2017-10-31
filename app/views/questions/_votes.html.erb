@@ -1,0 +1,17 @@
+<div class="vote-box">
+  <% if current_user%>
+    <% unless current_user.voted_for? @question%>
+      <div><%= link_to '<i class="material-icons">thumb_up</i>'.html_safe, question_like_path(@question), method: :put %> </div>
+    <% else %>
+      <% unless current_user.voted_up_on? @question%>                
+        <div><%= link_to '<i class="material-icons">thumb_up</i>'.html_safe, question_like_path(@question), method: :put %> </div>
+      <% else %>
+        <div><%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, question_dislike_path(@question), method: :put, class: 'text-danger'  %></div>
+      <% end %>
+    <% end %>
+    <div class="votes-counter" ><%= votes_prom(@question.get_upvotes.size, @question.get_downvotes.size) %></div>
+    <% unless current_user.voted_for? @question%>
+      <div ><%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, question_dislike_path(@question), method: :put, class: 'text-danger' %></div>      
+    <% end %>
+  <% end %>
+</div>

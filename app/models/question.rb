@@ -11,6 +11,8 @@
 #
 
 class Question < ApplicationRecord
+  acts_as_votable  
+
   belongs_to :user
   has_many :comments, as: :commentable
 
@@ -18,7 +20,6 @@ class Question < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :user, presence: true
-
 
   def self.search(word: nil)
     with_word(word)

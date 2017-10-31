@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question_for_votes, only: [:upvote, :downvote]
 
   def index
     @questions = Question.with_word(params[:question]).with_order
@@ -33,6 +34,14 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def upvote
+    @question.upvote_by current_user
+    redirect_to question_path(@question)
+  end
+  def downvote
+    @question.downvote_by current_user
+    redirect_to question_path(@question)
+  end
   def destroy
     if @question.destroy
       redirect_to questions_path, notice: "la pregunta fue eliminada con éxito"
@@ -42,7 +51,9 @@ class QuestionsController < ApplicationController
   end
 
   private
-
+  def set_question_for_votes
+    @question = Question.find(params[:question_id])
+  end
   def set_question
     @question = Question.find(params[:id])
   end

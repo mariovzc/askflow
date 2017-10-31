@@ -15,7 +15,8 @@
             <div class="data">
               <span class="user">Preguntó: <strong><%= @question.user.email %></strong></span>
               |
-              <span class="date">preguntado: <%= time_ago_in_words(@question.created_at) %></span>              
+              <span class="date">preguntado: <%= time_ago_in_words(@question.created_at) %></span>
+              <%= render 'votes' %>
             </div>
           </div>
         </div>

@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]  
   resources :sessions, only: [:new, :create, :destroy]
   resources :questions do 
+    put "like", to: "questions#upvote"
+    put "dislike", to: "questions#downvote"
+  
     resources :comments, module: :questions
   end
   post 'comments/:id/reply', to: 'comments#reply', as: :reply
+
 end

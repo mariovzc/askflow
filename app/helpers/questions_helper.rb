@@ -5,4 +5,7 @@ module QuestionsHelper
   def show_search_question
     controller.action_name == "index" || controller.action_name == "show"
   end
+  def votes_prom(upvotes, downvotes)
+    upvotes - downvotes
+  end
 end

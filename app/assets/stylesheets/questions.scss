@@ -41,6 +41,25 @@
      .data{
         text-align: center;
         color: #9199a1;
+        .vote-box{
+          margin: 20px 0 0;
+          div{
+            display: inline-flex;
+            display: -webkit-inline-flex;
+            margin: 0 10px;
+            a{
+              font-weight: bold;
+              color: #007BFF;
+              i{
+                font-size: 25px;                
+              }
+            }
+          }
+          .votes-counter{
+            font-size: 30px;
+          }
+  
+        }
      }
     }
   }
