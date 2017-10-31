@@ -11,8 +11,12 @@
 #
 
 class Question < ApplicationRecord
-  acts_as_votable  
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 
+  acts_as_votable
+  is_impressionable
+  
   belongs_to :user
   has_many :comments, as: :commentable
 
