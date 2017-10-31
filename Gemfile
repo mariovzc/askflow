@@ -23,6 +23,7 @@ gem 'redcarpet'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'impressionist'
+gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

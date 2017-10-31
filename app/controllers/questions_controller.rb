@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:edit, :update, :destroy]
   before_action :set_question_for_votes, only: [:upvote, :downvote]
   impressionist actions: [:show]
   
@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @question = Question.friendly().find(params[:id])    
   end
 
   def new

@@ -11,6 +11,9 @@
 #
 
 class Question < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title
+
   acts_as_votable
   is_impressionable
   
