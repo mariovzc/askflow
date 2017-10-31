@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.friendly().find(params[:id])    
+    @question = Question.friendly.find(params[:id])    
   end
 
   def new
@@ -54,10 +54,10 @@ class QuestionsController < ApplicationController
 
   private
   def set_question_for_votes
-    @question = Question.find(params[:question_id])
+    @question = Question.friendly.find(params[:question_id])
   end
   def set_question
-    @question = Question.find(params[:id])
+    @question = Question.friendly.find(params[:id])
   end
 
   def question_params
