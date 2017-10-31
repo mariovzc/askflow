@@ -45,3 +45,36 @@
     }
   }
 }
+
+.comments{
+  .box{
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    button{
+      margin-right: 20px;
+    }
+  }
+  .jumbotron{
+    padding: 2rem 2rem;
+    .row{
+      .vote-container{
+        text-align: center;        
+      }
+    }
+    .data{
+      text-align: center;
+    }
+    .replies{
+      background-color: #cfd8dc;
+      padding: 10px;
+      div{
+        span{
+          font-size: 13px;
+          strong{
+            color: #0069D9;
+          }          
+        }
+      }
+    }
+  }
+}

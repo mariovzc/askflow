@@ -1,0 +1,69 @@
+<% commentable.comments.each do |comment| %>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="vote-container"> Arriba voto Abajo</div>      
+    </div>
+    <div class="col-sm-8">
+      <div class="lead"><%=markdown(comment.body)%></div>                    
+    </div>
+    <div class="col-sm-2 text-center">
+      <button id="reply-<%=comment.id%>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#createReply" data-whatever="<%=comment.id%>">Reply</button>        
+    </div> 
+  </div>
+  <hr class="my-4">
+  <div class="data">
+    <span class="user">Preguntó: <strong><%= comment.user.email %></strong></span>
+    |
+    <span class="date">preguntado hace: <%= time_ago_in_words(comment.created_at) %></span>            
+  </div>
+  <% if !comment.replies.blank? && type_comment(comment.replies.first.commentable_type) %>
+    <div class="replies">
+      <h6 class="text-center"> Respuestas</h6>
+      <%comment.replies.each do |reply|%>
+        <% if type_comment reply.commentable_type %>
+          <div>
+            <span><%=reply.body%> - <strong><%=reply.user.email%></strong> <span>hace <%= time_ago_in_words(reply.created_at) %></span> </span>  
+          </div>
+          <hr>
+        <% end %>
+      <%end%>
+    </div>
+  <% end %>
+</div>
+<% end %>
+
+<div class="modal fade" id="createReply" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input type="hidden" name="comment_id" id="comment_id">
+          <input type="hidden" name="commentable_type" value="Comment">
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="body" name="body"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    $('#createReply').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var id = button.data('whatever') // Extract info from data-* attributes
+      var modal = $(this)
+      modal.find('.modal-body #comment_id').val(id)
+    })
+</script>
