@@ -7,6 +7,8 @@
 #  commentable_id   :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  user_id          :integer
+#  body             :string
 #
 
 class Comment < ApplicationRecord
@@ -16,5 +18,5 @@ class Comment < ApplicationRecord
   has_many   :replies, class_name: "Comment", foreign_key: :commentable_id, dependent: :destroy
 
   validates :body, presence: true  
-
+  validates :user, presence: true  
 end
