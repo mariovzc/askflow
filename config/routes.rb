@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]  
   resources :sessions, only: [:new, :create, :destroy]
   resources :questions do 
-    resources :comments, module: :questions    
+    resources :comments, module: :questions
   end
+  post 'comments/:id/reply', to: 'comments#reply', as: :reply
 end
