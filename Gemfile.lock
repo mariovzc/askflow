@@ -88,6 +88,8 @@ GEM
       rack
     i18n (0.9.0)
       concurrent-ruby (~> 1.0)
+    impressionist (1.6.0)
+      nokogiri (~> 1)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -247,6 +249,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   gravatar-ultimate
+  impressionist
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

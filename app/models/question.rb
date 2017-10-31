@@ -11,8 +11,9 @@
 #
 
 class Question < ApplicationRecord
-  acts_as_votable  
-
+  acts_as_votable
+  is_impressionable
+  
   belongs_to :user
   has_many :comments, as: :commentable
 
