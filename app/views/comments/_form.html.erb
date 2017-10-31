@@ -1,7 +1,7 @@
 <%= form_for [commentable, Comment.new] do  |f| %>
   <div class="modal-body">
     <div class="form-group">
-      <%= f.text_area :body, class: "form-comtrol text-area", placeholder: 'Comentar ....'%>
+      <%= f.text_area :body, class: "form-comtrol text-area", placeholder: 'Comentar ....', required: true%>
     </div>
   </div>
   <div class="modal-footer">
@@ -15,7 +15,7 @@
       placeholder: "Comentar....",
       renderingConfig: {
       singleLineBreaks: false,
-      codeSyntaxHighlighting: true,
+      codeSyntaxHighlighting: true
       }
     });
   </script>
