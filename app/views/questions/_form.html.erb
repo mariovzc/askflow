@@ -1,0 +1,41 @@
+<div class="question-form form-container">
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="text-center"><%= form_title %></h1>
+          <% if @question.errors.any? %>
+            <div class="alert alert-danger">
+              <ul>
+              <% @question.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <%= form_for @question do |f| %>
+            <div class="form-group">
+              <%= f.text_field :title, class: "form-control input-lg", placeholder: "Ingresa el titulo de la pregunta" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_area :description, class: "form-control input-lg text-area", placeholder: "Ingresa la descripción de la pregunta" %>
+            </div>
+            <div>
+              <%= f.submit form_title, class: "btn btn-primary btn-lg btn-block" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var simplemde = new SimpleMDE({
+    element: $(".text-area")[0],
+    placeholder: "Ingresa la descripción de la pregunta",
+    renderingConfig: {
+		singleLineBreaks: false,
+		codeSyntaxHighlighting: true,
+	  }
+  });
+</script>

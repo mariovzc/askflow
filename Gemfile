@@ -17,6 +17,12 @@ gem 'jbuilder', '~> 2.5'
 gem 'annotate'
 gem 'gravatar-ultimate'
 gem 'sorcery'
+gem 'bootstrap', '~> 4.0.0.beta2'
+gem 'jquery-rails'
+gem 'redcarpet'
+gem 'rails-i18n', '~> 5.0.0'
+gem 'acts_as_votable', '~> 0.11.1'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

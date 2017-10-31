@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import "bootstrap";
+@import "questions";
+@import "comments";
+body{
+  background-color: #F6F7F8;
+  h1{
+    font-family: 'Roboto', sans-serif;    
+  }
+  .nav-bar{
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 6px 1px rgba(70,70,70,.3)
+  }
+  .form-container{
+    margin-top: 40px;
+    .card{
+     border-radius: 10px; 
+     box-shadow: 0 1px 1px 1px rgba(70,70,70,.1);
+    }  
+  }
+}

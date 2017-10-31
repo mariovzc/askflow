@@ -3,12 +3,27 @@
   <head>
     <title>Askflow</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
+    <link rel="stylesheet"
+    href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script>hljs.initHighlightingOnLoad();</script>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/nav'%>
+    <div class="container">
+     <%=yield%>
+    </div>
+    <%=yield :javascript%>
   </body>
 </html>

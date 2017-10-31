@@ -1,0 +1,75 @@
+<% if commentable.comments.count > 0%>
+  <h3 class="text-center">Respuestas</h3>
+<% end %>
+<% commentable.comments.each do |comment| %>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="vote-container"><%= render 'comments/votes', comment: comment %></div>      
+    </div>
+    <div class="col-sm-8">
+      <div class="lead"><%=markdown(comment.body)%></div>                    
+    </div>
+    <div class="col-sm-2 text-center">
+      <% if current_user %>
+        <button id="reply-<%=comment.id%>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#createReply" data-whatever="<%=comment.id%>">Responder</button>
+      <% end %>
+    </div>
+  </div>
+  <hr class="my-4">
+  <div class="data">
+    <span class="user">Preguntó: <strong><%= comment.user.email %></strong></span>
+    |
+    <span class="date">preguntado hace: <%= time_ago_in_words(comment.created_at) %></span>
+  </div>
+  <% if !comment.replies.blank? %>
+    <div class="replies align-right">
+      <%comment.replies.each do |reply|%>
+        <% if type_comment reply.commentable_type %>
+          <div>
+            <span><%=reply.body%> - <strong><%=reply.user.email%></strong> <span>hace <%= time_ago_in_words(reply.created_at) %></span> </span>  
+          </div>
+          <%= last_reply(reply, comment.replies) %>
+        <% end %>
+      <%end%>        
+    </div>
+  <% end %>
+</div>
+<% end %>
+
+<div class="modal fade" id="createReply" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Respuesta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="reply-form" accept-charset="UTF-8" method="post" >
+        <div class="modal-body">
+          <input name="utf8" type="hidden" value="✓">
+          <input type="hidden" name="authenticity_token" value="/9znzBoOltR9YeYvvY4JTH0lnK8pOdjviL1zSHR/HorUvKzVj6rmCf25KuJKcmsKJuGSrLeddGDoKZz68vrKAA==">
+          <input type="hidden" name="Reply[comment_id]" id="comment_id">
+          <input type="hidden" name="Reply[commentable_type]" value="Comment">
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="body" name="Reply[body]" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <input type="submit" class="btn btn-primary" value="Responder" />
+        </div>
+      </form>    
+    </div>
+  </div>
+</div>
+<script>
+    $('#createReply').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var id = button.data('whatever') // Extract info from data-* attributes
+      $('#reply-form').attr('action', '/comments/' + id + '/reply')
+      $('#comment_id').val(id)
+    })
+</script>

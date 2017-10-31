@@ -1,3 +1,66 @@
-// Place all the styles related to the questions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.questions{
+  .card{
+    .title{
+      font-size: 2em;
+      font-weight: 600;
+    }
+    .user{
+      color: #2f3639;
+      font-size: 1em;
+      margin-bottom: .2em;
+      font-weight: 400;
+      position: relative;
+    }
+    .date{
+      color: #d99d5b;
+      font-size: 13px;
+      margin: 6px 0;
+      line-height: 1.4;
+      display: block;
+    }
+    .card-body{
+      .box-container{
+        display: inline-flex;
+        display: -webkit-inline-flex;
+        width: 100%;
+        .box{
+          display: grid;
+          text-align: center;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+.question{
+  .card{
+    .card-body{
+      .actions a{
+        margin: 5px;
+      }
+     .data{
+        text-align: center;
+        color: #9199a1;
+        .vote-box{
+          margin: 20px 0 0;
+          div{
+            display: inline-flex;
+            display: -webkit-inline-flex;
+            margin: 0 10px;
+            a{
+              font-weight: bold;
+              color: #007BFF;
+              i{
+                font-size: 25px;                
+              }
+            }
+          }
+          .votes-counter{
+            font-size: 30px;
+          }
+  
+        }
+     }
+    }
+  }
+}
