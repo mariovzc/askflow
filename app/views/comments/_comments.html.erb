@@ -1,15 +1,18 @@
+<% if commentable.comments.count > 0%>
+  <h3 class="text-center">Respuestas</h3>
+<% end %>
 <% commentable.comments.each do |comment| %>
 <div class="jumbotron">
   <div class="row">
     <div class="col-sm-2">
-      <div class="vote-container"> Arriba voto Abajo</div>      
+      <div class="vote-container"><%= render 'comments/votes', comment: comment %></div>      
     </div>
     <div class="col-sm-8">
       <div class="lead"><%=markdown(comment.body)%></div>                    
     </div>
     <div class="col-sm-2 text-center">
       <% if current_user %>
-        <button id="reply-<%=comment.id%>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#createReply" data-whatever="<%=comment.id%>">Reply</button>
+        <button id="reply-<%=comment.id%>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#createReply" data-whatever="<%=comment.id%>">Responder</button>
       <% end %>
     </div>
   </div>

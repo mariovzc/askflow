@@ -10,7 +10,13 @@
     padding: 2rem 2rem;
     .row{
       .vote-container{
-        text-align: center;        
+        text-align: center;
+        .vote-box{
+          .votes-counter{
+            font-size: 25px;
+            font-weight: 400;
+          }
+        }
       }
     }
     .data{
