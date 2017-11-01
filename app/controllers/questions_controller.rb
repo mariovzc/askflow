@@ -9,7 +9,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.friendly.find(params[:id])    
+    @question = Question.friendly.find(params[:id])
+    impressionist(@question)
   end
 
   def new
