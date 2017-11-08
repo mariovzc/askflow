@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   resources :questions do 
     put "like", to: "questions#upvote"
     put "dislike", to: "questions#downvote"
-  
+    put "unvote", to: "questions#unvote"
+    
     resources :comments, module: :questions
   end
   resources :comments do 
