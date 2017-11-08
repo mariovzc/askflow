@@ -13,5 +13,9 @@
     <% unless current_user.voted_for? comment%>
       <div ><%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, comment_dislike_path(comment), method: :put, class: 'text-danger' %></div>      
     <% end %>
+  <% else %>
+    <div><button class="btn btn-link disabled" data-toggle="tooltip" data-placement="right" title="Inicia sesión para votar" ><i class="material-icons">thumb_up</i></button></div>
+    <div class="votes-counter" ><%= votes_prom(@question.get_upvotes.size, @question.get_downvotes.size) %></div>
+    <div><button href="javascript:void(0);" class="btn btn-link disabled" data-toggle="tooltip" data-placement="right" title="Inicia sesión para votar"><i class="material-icons">thumb_down</i></button></div>
   <% end %>
 </div>
