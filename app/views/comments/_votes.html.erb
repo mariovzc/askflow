@@ -5,13 +5,21 @@
     <% else %>
       <% unless current_user.voted_up_on? comment%>
         <div><%= link_to '<i class="material-icons">thumb_up</i>'.html_safe, comment_like_path(comment), method: :put %> </div>
+        <div class="votes-counter" ><%= votes_prom(comment.get_upvotes.size, comment.get_downvotes.size) %></div>
+        <div><%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, comment_unvote_path(comment), method: :put, class: 'text-muted' %> </div>
       <% else %>
-        <div><%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, comment_dislike_path(comment), method: :put, class: 'text-danger'  %></div>
+        <div><%= link_to '<i class="material-icons">thumb_up</i>'.html_safe, comment_unvote_path(comment), method: :put, class: 'text-muted' %> </div>
+        <div class="votes-counter" ><%= votes_prom(comment.get_upvotes.size, comment.get_downvotes.size) %></div>
+        <div><%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, comment_dislike_path(comment), method: :put, class: 'text-danger' %></div>
       <% end %>
     <% end %>
-    <div class="votes-counter" ><%= votes_prom(comment.get_upvotes.size, comment.get_downvotes.size) %></div>
     <% unless current_user.voted_for? comment%>
-      <div ><%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, comment_dislike_path(comment), method: :put, class: 'text-danger' %></div>      
+      <div class="votes-counter" ><%= votes_prom(comment.get_upvotes.size, comment.get_downvotes.size) %></div>
+      <div ><%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, comment_dislike_path(comment), method: :put, class: 'text-danger' %></div>
     <% end %>
+  <% else %>
+    <div><button class="btn btn-link disabled" data-toggle="tooltip" data-placement="right" title="Inicia sesión para votar" ><i class="material-icons">thumb_up</i></button></div>
+    <div class="votes-counter" ><%= votes_prom(comment.get_upvotes.size, comment.get_downvotes.size) %></div>
+    <div><button href="javascript:void(0);" class="btn btn-link disabled" data-toggle="tooltip" data-placement="right" title="Inicia sesión para votar"><i class="material-icons">thumb_down</i></button></div>
   <% end %>
 </div>

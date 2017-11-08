@@ -18,4 +18,10 @@ body{
      box-shadow: 0 1px 1px 1px rgba(70,70,70,.1);
     }  
   }
+  a.disabled {
+    /* Make the disabled links grayish*/
+    color: gray !important;
+    /* And disable the pointer events */
+    pointer-events: none;
+  }
 }
