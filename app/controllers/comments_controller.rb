@@ -3,13 +3,17 @@ class CommentsController < ApplicationController
   before_action :set_comment_for_votes, only: [:upvote, :downvote, :unvote]
   def create
     @comment = @commentable.comments.new(comment_params)
-    @comment.save
+    unless @comment.save
+      flash[:danger] = "La respuesta  no puede estar vacio"
+    end
     redirect_to @commentable
   end
 
   def reply
     reply = @comment.replies.new(reply_params)
-    reply.save
+    unless reply.save
+      flash[:danger] = "El comentario no puede estar vacio"
+    end
     redirect_to question_path(@comment.commentable_id) 
   end
   
