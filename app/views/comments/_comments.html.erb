@@ -12,7 +12,7 @@
     </div>
     <div class="col-sm-2 text-center">
       <% if current_user %>
-        <button id="reply-<%=comment.id%>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#createReply" data-whatever="<%=comment.id%>">Responder</button>
+        <button id="reply-<%=comment.id%>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#createReply" data-whatever="<%=comment.id%>">Comentar</button>
       <% end %>
     </div>
   </div>
@@ -41,7 +41,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Respuesta</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Comentario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -53,13 +53,13 @@
           <input type="hidden" name="Reply[comment_id]" id="comment_id">
           <input type="hidden" name="Reply[commentable_type]" value="Comment">
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="body" name="Reply[body]" required></textarea>
+            <label for="message-text" class="col-form-label">Mensaje:</label>
+            <textarea class="form-control" id="body" name="Reply[body]"></textarea>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <input type="submit" class="btn btn-primary" value="Responder" />
+          <input type="submit" class="btn btn-primary" value="Comentar" />
         </div>
       </form>    
     </div>

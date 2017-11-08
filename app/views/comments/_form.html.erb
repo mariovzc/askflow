@@ -1,18 +1,18 @@
 <%= form_for [commentable, Comment.new] do  |f| %>
   <div class="modal-body">
     <div class="form-group">
-      <%= f.text_area :body, class: "form-comtrol text-area", placeholder: 'Comentar ....', required: true%>
+      <%= f.text_area :body, class: "form-comtrol text-area", placeholder: 'Comentar ....'%>
     </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-    <%= f.submit 'Comentar', class: 'btn btn-primary' %>
+    <%= f.submit 'Responder', class: 'btn btn-primary' %>
   </div>
 <% end %>
 <script>
     var simplemde = new SimpleMDE({
       element: $(".text-area")[0],
-      placeholder: "Comentar....",
+      placeholder: "Responder....",
       renderingConfig: {
       singleLineBreaks: false,
       codeSyntaxHighlighting: true
