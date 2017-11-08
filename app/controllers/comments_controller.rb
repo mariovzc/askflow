@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:reply]
-  before_action :set_comment_for_votes, only: [:upvote, :downvote]
+  before_action :set_comment_for_votes, only: [:upvote, :downvote, :unvote]
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.save
@@ -16,6 +16,10 @@ class CommentsController < ApplicationController
   def upvote
     @comment.upvote_by current_user
     redirect_to question_path(@comment.commentable_id)
+  end
+  def unvote
+    @comment.unvote_by current_user
+    redirect_to question_path(@comment.commentable_id)    
   end
   def downvote
     @comment.downvote_by current_user

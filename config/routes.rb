@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :comments do 
     put "like", to: "comments#upvote"
     put "dislike", to: "comments#downvote"
+    put "unvote", to: "comments#unvote"
   end
   post 'comments/:id/reply', to: 'comments#reply', as: :reply
 
