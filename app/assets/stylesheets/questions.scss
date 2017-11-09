@@ -38,6 +38,16 @@
       .actions a{
         margin: 5px;
       }
+      .question_comments{
+        background-color: #cfd8dc;
+        padding: 20px;
+        border-radius: 0.3rem;
+        div{
+          span{
+            font-size: 13px;
+          }
+        }
+      }
      .data{
         text-align: center;
         color: #9199a1;

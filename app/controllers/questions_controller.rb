@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   before_action :set_question, only: [:edit, :update, :destroy]
-  before_action :set_question_for_votes, only: [:upvote, :downvote]
+  before_action :set_question_for_votes, only: [:upvote, :downvote, :unvote]
   impressionist actions: [:show]
   
   def index
@@ -9,7 +9,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.friendly.find(params[:id])
+    @question = Question.friendly.find(params[:id]) 
+    @question_comments = Comment.where(commentable_type: "questionComment", commentable_id: @question.id)
     impressionist(@question)
   end
 
@@ -40,6 +41,10 @@ class QuestionsController < ApplicationController
   def upvote
     @question.upvote_by current_user
     redirect_to question_path(@question)
+  end
+  def unvote
+    @question.unvote_by current_user
+    redirect_to question_path(@question)    
   end
   def downvote
     @question.downvote_by current_user

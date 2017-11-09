@@ -5,13 +5,21 @@
     <% else %>
       <% unless current_user.voted_up_on? @question%>                
         <div><%= link_to '<i class="material-icons">thumb_up</i>'.html_safe, question_like_path(@question), method: :put %> </div>
-      <% else %>
+        <div class="votes-counter" ><%= votes_prom(@question.get_upvotes.size, @question.get_downvotes.size) %></div>                
+        <div><%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, question_unvote_path(@question), method: :put, class: 'text-muted' %> </div>              
+      <% else %>      
+        <div><%= link_to '<i class="material-icons">thumb_up</i>'.html_safe, question_unvote_path(@question), method: :put, class: 'text-muted' %> </div>      
+        <div class="votes-counter" ><%= votes_prom(@question.get_upvotes.size, @question.get_downvotes.size) %></div>        
         <div><%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, question_dislike_path(@question), method: :put, class: 'text-danger'  %></div>
       <% end %>
     <% end %>
-    <div class="votes-counter" ><%= votes_prom(@question.get_upvotes.size, @question.get_downvotes.size) %></div>
     <% unless current_user.voted_for? @question%>
+      <div class="votes-counter" ><%= votes_prom(@question.get_upvotes.size, @question.get_downvotes.size) %></div>        
       <div ><%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, question_dislike_path(@question), method: :put, class: 'text-danger' %></div>      
     <% end %>
+  <% else %>
+    <div><button class="btn btn-link disabled" data-toggle="tooltip" data-placement="right" title="Inicia sesión para votar"><i class="material-icons">thumb_up</i></a></div>
+    <div class="votes-counter" ><%= votes_prom(@question.get_upvotes.size, @question.get_downvotes.size) %></div>
+    <div><button class="btn btn-link disabled" data-toggle="tooltip" data-placement="right" title="Inicia sesión para votar"><i class="material-icons">thumb_down</i></a></div>
   <% end %>
 </div>
