@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
   def create
     @question = current_user.questions.new(question_params)
     if @question.save
-      redirect_to questions_path, notice: 'La pregunta fue creada exitosamente!!!'
+      redirect_to questions_path
     else
       render :new
     end
@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to questions_path, notice: 'La pregunta ha sido Modificada con éxito'
+      redirect_to questions_path
     else
       render :edit
     end
@@ -52,9 +52,9 @@ class QuestionsController < ApplicationController
   end
   def destroy
     if @question.destroy
-      redirect_to questions_path, notice: "la pregunta fue eliminada con éxito"
+      redirect_to questions_path
     else
-      redirect_to questions_path, notice: "la pregunta no fue eliminada"
+      redirect_to questions_path
     end
   end
 
