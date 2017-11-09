@@ -14,6 +14,16 @@
           <h2 class="title text-center"><%= @question.title %></h2>
           <%=markdown(@question.description)%>
           <hr>
+          <% if @question_comments.count > 0 %>
+            <div class="question_comments align-right">
+              <% @question_comments.each do |qc| %>
+                <div>
+                  <span><%= qc.body %> - <strong><%= qc.user.email%></strong> <span>hace <%= time_ago_in_words(qc.created_at) %></span> </span>  
+                </div>
+                <%= last_qc(qc, @question_comments) %>
+              <% end %>              
+            </div>
+          <% end %>
           <%if question_owner%>
             <div class="actions text-center">
               <%= link_to  "Editar", edit_question_path(@question), class: 'btn btn-outline-primary btn-sm' %>
@@ -32,7 +42,10 @@
       <div class="comments">
         <% if current_user %>
           <div class="text-right">
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createCommentModal">Responder</button>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createReplyModal" >Responder</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCommentModal" >Comentar</button>
+            </div>
           </div>
         <% end %>
         <%= render partial: 'comments/comments', locals: {commentable: @question} %>
@@ -41,7 +54,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="createCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="createReplyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -53,6 +66,35 @@
       <%= render partial: "comments/form", locals: {commentable: @question} %>              
     </div>
   </div>
+</div>
+
+<div class="modal fade" id="createCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Comentario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="question-comment-form" accept-charset="UTF-8" method="post" action="/questions/<%=@question.id%>/create_question_comment" >
+          <div class="modal-body">
+            <input name="utf8" type="hidden" value="✓">
+            <input type="hidden" name="authenticity_token" value="/9znzBoOltR9YeYvvY4JTH0lnK8pOdjviL1zSHR/HorUvKzVj6rmCf25KuJKcmsKJuGSrLeddGDoKZz68vrKAA==">
+            <input type="hidden" name="qp[question_id]" id="id" value="<%= @question.id%>">
+            <input type="hidden" name="qp[commentable_type]" value="questionComment">
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Mensaje:</label>
+              <textarea class="form-control" id="body" name="qp[body]"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <input type="submit" class="btn btn-primary" value="Comentar" />
+          </div>
+        </form>    
+      </div>
+    </div>
 </div>
 
 <script type="text/javascript">

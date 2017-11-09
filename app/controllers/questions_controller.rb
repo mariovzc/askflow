@@ -9,7 +9,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.friendly.find(params[:id])    
+    @question = Question.friendly.find(params[:id]) 
+    @question_comments = Comment.where(commentable_type: "questionComment", commentable_id: @question.id)
   end
 
   def new
