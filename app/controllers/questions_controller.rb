@@ -11,6 +11,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.friendly.find(params[:id]) 
     @question_comments = Comment.where(commentable_type: "questionComment", commentable_id: @question.id)
+    impressionist(@question)
   end
 
   def new
@@ -62,7 +63,7 @@ class QuestionsController < ApplicationController
     @question = Question.friendly.find(params[:question_id])
   end
   def set_question
-    @question = Question.find(params[:id])
+    @question = Question.friendly.find(params[:id])
   end
 
   def question_params
